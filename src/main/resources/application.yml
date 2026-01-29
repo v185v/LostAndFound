@@ -1,0 +1,5 @@
+spring:
+  application:
+    name: LostAndFound
+Server:
+  port: 8080
