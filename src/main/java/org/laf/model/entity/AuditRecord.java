@@ -10,6 +10,10 @@ import org.laf.common.constant.AuditTypeEnum;
 
 import java.time.LocalDateTime;
 
+/**
+ * 审核记录审计表（audit_record）
+ * 关联统一账号表：审核人=失物管理员/系统管理员
+ */
 @Data
 @EqualsAndHashCode(callSuper = true)
 @AllArgsConstructor
