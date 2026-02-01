@@ -22,7 +22,7 @@ import java.time.LocalDateTime;
 @TableName("audit_record")
 public class AuditRecord extends BaseEntity{
     /**
-     * 被审核数据ID（如：publish_record.id、claim_apply.id、notice.id）
+     * 被审核数据ID（如post.id、claim_apply.id、notice.id）
      */
     private Long targetId;
 
