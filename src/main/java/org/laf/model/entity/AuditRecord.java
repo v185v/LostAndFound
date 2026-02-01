@@ -10,6 +10,10 @@ import org.laf.common.constant.AuditTypeEnum;
 
 import java.time.LocalDateTime;
 
+/**
+ * 审核记录审计表（audit_record）
+ * 关联统一账号表：审核人=失物管理员/系统管理员
+ */
 @Data
 @EqualsAndHashCode(callSuper = true)
 @AllArgsConstructor
@@ -18,7 +22,7 @@ import java.time.LocalDateTime;
 @TableName("audit_record")
 public class AuditRecord extends BaseEntity{
     /**
-     * 被审核数据ID（如：publish_record.id、claim_apply.id、notice.id）
+     * 被审核数据ID（如post.id、claim_apply.id、notice.id）
      */
     private Long targetId;
 
