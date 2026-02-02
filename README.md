@@ -6,10 +6,10 @@
 
 后端仓库地址:https://github.com/v185v/LostAndFound
 后端技术栈:
-    - Springboot3.5.10
-    - MySQL 8.0 + MyBatis-Plus
-    - Redis用于存储 JWT 的 Token（实现注销/踢下线功能）、缓存公告信息、数据字典以及首页的热门失物数据，减轻数据库压力。
-    - Spring Security + JWT统一认证与鉴权
+- Springboot3.5.10
+- MySQL 8.0 + MyBatis-Plus
+- Redis用于存储 JWT 的 Token（实现注销/踢下线功能）、缓存公告信息、数据字典以及首页的热门失物数据，减轻数据库压力。
+- Spring Security + JWT统一认证与鉴权
 ```plaintext
 src/main/java/org/laf
 ├── LostFoundApplication.java          // 项目启动类
@@ -78,7 +78,7 @@ src/main/java/org/laf
 
 5、退出登录。
 
-**三、****系统管理员**
+**三、系统管理员**
 
 1、登录：使用超级管理员账号登录。
 
