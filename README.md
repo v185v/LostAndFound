@@ -31,15 +31,7 @@ src/main/java/org/laf
 ├── mapper/                            // 数据访问层（MyBatis-Plus）
 ├── service/                           // 业务层（接口+实现）
 │   ├── impl/                          // 业务实现类
-│   ├── UserService.java               // 用户登录/改密码
-│   ├── PublishService.java            // 失物/招领发布
-│   ├── AuditService.java             // 审核管理
-│   └── SystemAdminService.java        // 系统管理员功能
 ├── controller/                        // 控制层（按角色拆分）
-│   ├── UserController.java            // 学生/老师通用接口
-│   ├── LostFoundController.java       // 失物招领发布/查询
-│   ├── AuditController.java           // 失物管理员审核接口
-│   └── SystemAdminController.java     // 系统管理员接口
 └── security/                          // 安全相关
     ├── JwtTokenFilter.java            // JWT拦截器
     └── PermissionAspect.java          // 权限切面
