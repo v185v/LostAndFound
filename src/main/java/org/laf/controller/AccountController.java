@@ -1,7 +1,11 @@
 package org.laf.controller;
 
+import lombok.RequiredArgsConstructor;
 import org.laf.common.constant.UserRoleEnum;
 import org.laf.common.result.AjaxResult;
+import org.laf.common.utils.JwtUtils;
+import org.laf.model.dto.account.LoginRequest;
+import org.laf.model.dto.account.LoginResponse;
 import org.laf.model.entity.Account;
 import org.laf.service.AccountService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,12 +13,15 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+@RequiredArgsConstructor
 @RestController
 @RequestMapping("/account")
 public class AccountController {
 
-    @Autowired
-    private AccountService accountService;
+
+    private final AccountService accountService;
+
+    private final JwtUtils jwtUtils;
 
     @GetMapping("/{id}")
     public AjaxResult<Account> getById(@PathVariable Long id) {
@@ -32,13 +39,28 @@ public class AccountController {
     }
 
     @PostMapping("/login")
-    public AjaxResult<String> login(@RequestParam String accountId, @RequestParam String password) {
-        if (accountService.verifyPassword(accountId, password)) {
-            // TODO: Generate and return JWT token
-            return AjaxResult.success("Login successful");
+    public AjaxResult<LoginResponse> login(@RequestBody LoginRequest loginRequest) {
+        if (accountService.verifyPassword(loginRequest.getAccountId(), loginRequest.getPassword())) {
+            Account account = accountService.getByAccountId(loginRequest.getAccountId());
+            String token = jwtUtils.generateToken(account.getAccountId(), account.getRole().getCode());
+            
+            LoginResponse response = new LoginResponse();
+            response.setToken(token);
+            response.setIsFirstLogin(Boolean.TRUE.equals(account.getIsFirstLogin()));
+            response.setId(account.getId());
+            response.setCreatedAt(account.getCreatedAt());
+            response.setUpdatedAt(account.getUpdatedAt());
+            
+            return AjaxResult.success(response);
         } else {
             return AjaxResult.fail(401, "Invalid credentials");
         }
+    }
+
+    @PostMapping("/logout")
+    public AjaxResult<String> logout() {
+        // Client side should remove the token. Server side can blacklist token if needed (requires Redis).
+        return AjaxResult.success("Logout successful");
     }
 
     @PostMapping("/updatePassword")
