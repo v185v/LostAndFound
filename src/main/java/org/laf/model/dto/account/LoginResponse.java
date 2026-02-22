@@ -10,5 +10,5 @@ import org.laf.model.dto.base.BaseResponse;
 @NoArgsConstructor
 public class LoginResponse extends BaseResponse {
     private String token;
-    private boolean isFirstLogin;
+    private Boolean isFirstLogin;
 }

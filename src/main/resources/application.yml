@@ -1,5 +1,9 @@
 spring:
   application:
     name: LostAndFound
-Server:
+server:
   port: 8080
+
+jwt:
+  secret: mySecretKeyForLostAndFoundApplicationWhichShouldBeLongEnough
+  expiration: 86400 # 24 hours in seconds
